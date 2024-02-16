@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  loginView.swift
 //  Water Reviews
 //
 //  Created by Javier Carrillo on 2/13/24.
@@ -10,7 +10,7 @@ import AuthenticationServices
 
 
 
-struct pageView: View
+struct loginView: View
 {
     var body: some View 
     {
@@ -30,5 +30,5 @@ struct pageView: View
 }
 
 #Preview {
-    pageView()
+    loginView()
 }

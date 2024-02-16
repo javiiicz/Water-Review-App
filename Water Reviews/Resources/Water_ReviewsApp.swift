@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct Water_ReviewsApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+struct Water_ReviewsApp: App 
+{
+    var body: some Scene 
+    {
+        WindowGroup 
+        {
+            pageView()
         }
     }
 }
