@@ -5,4 +5,21 @@
 //  Created by Javier Carrillo on 2/17/24.
 //
 
-import Foundation
+import SwiftUI
+import AuthenticationServices
+
+// Main View
+struct mainView: View {
+    var body: some View {
+        NavigationStack{
+            loginView()
+            
+        }
+        .tint(.blue)
+        
+    }
+}
+
+#Preview {
+    mainView()
+}

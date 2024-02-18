@@ -8,7 +8,7 @@
 import SwiftUI
 import AuthenticationServices
 
-// Main Login View
+
 struct loginView: View
 {
     // Set up variables for username and password
@@ -24,18 +24,21 @@ struct loginView: View
             Circle()
                 .scale(1.7)
                 .foregroundColor(.white.opacity(0.15))
+            Circle()
+                .scale(1.2)
+                .foregroundColor(.white.opacity(0.3))
             
             // Vstack for title, inputs, and buttons
             VStack{
                 Text("Log In")
                     .font(.system(size: 40,weight: .heavy))
                 
-                TextField(" Username", text: $username)
+                TextField(" Email", text: $username)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
                 
-                TextField(" Password", text: $password)
+                SecureField(" Password", text: $password)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
@@ -54,23 +57,12 @@ struct loginView: View
                     Text("Don't have an account?")
                     
                     NavigationLink("Register"){
-                       // RegisterView()
+                        registerView()
                     }
-            }
+                    
+                }
             .padding()
-            
-            
-            
-        }
-        
-        
-            
+            }
         }
     }
-}
-
-
-
-#Preview {
-    loginView()
 }
