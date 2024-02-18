@@ -7,13 +7,17 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
 
 
 struct loginView: View
 {
     // Set up variables for username and password
-    @State private var username:String = ""
+    @State private var email:String = ""
     @State private var password:String = ""
+    
+    @State private var showAlert:Bool = false
+    @State private var feedbackMsg = ""
     
     // View
     var body: some View
@@ -33,7 +37,7 @@ struct loginView: View
                 Text("Log In")
                     .font(.system(size: 40,weight: .heavy))
                 
-                TextField(" Email", text: $username)
+                TextField(" Email", text: $email)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
@@ -44,13 +48,28 @@ struct loginView: View
                     .font(.system(size: 20))
                 
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                        if let error = error {
+                          // Handle the error here
+                          feedbackMsg = "Error signing in: " + error.localizedDescription
+                            self.showAlert = true
+                        } else {
+                          // Aigned In
+                            feedbackMsg = "Huzzah!"
+                        }
+                    }
+
+                }, label: {
                     Text("Sign In")
                 })
                 .font(.system(size: 20))
                 .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,height: 50)
                 .background(.white .opacity(0.3))
                 .clipShape(.buttonBorder)
+                .alert(isPresented: $showAlert, content: {
+                    Alert(title: Text("Feedback"), message: Text(feedbackMsg))
+                })
                 
                 // Link for opeing Register navigation view
                 HStack{

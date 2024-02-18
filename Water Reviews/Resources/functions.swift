@@ -17,7 +17,8 @@ func isValidEmail(_ email: String) -> Bool {
     return emailPred.evaluate(with: email)
 }
 
-// Checks validity for registration
+
+// Checks validity for registration and creates a new user
 func registerSubmit(email:String, password:String, confirm:String, completion: @escaping (Error?) -> Void)-> String{
     var alertMsg:String = ""
     
@@ -42,6 +43,27 @@ func registerSubmit(email:String, password:String, confirm:String, completion: @
     Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
         completion(error) // Pass the error to the completion handler
       }
+    return alertMsg
+}
+
+
+// Checks validity for signing in
+func loginSubmit(email:String, password:String, completion: @escaping (Error?) -> Void)-> String{
+    var alertMsg:String = ""
+    
+    // Check inputs have stuff
+    if email == "" || password == "" {
+        alertMsg = "Error: One of the inputs is empty."
+        return alertMsg
+    }
+    
+    // Check email
+    if !isValidEmail(email) {
+        alertMsg = "Error: The email is not valid."
+        return alertMsg
+    }
+    
+    
     return alertMsg
 }
 
