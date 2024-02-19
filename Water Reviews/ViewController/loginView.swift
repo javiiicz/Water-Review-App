@@ -67,6 +67,14 @@ struct loginView: View
                     }
                     
                     else {
+                        //Sign out first 
+                        let firebaseAuth = Auth.auth()
+                        do {
+                          try firebaseAuth.signOut()
+                        } catch let signOutError as NSError {
+                          print("Error signing out: %@", signOutError)
+                        }
+                        
                         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                             if error == nil {
                                 //Success
