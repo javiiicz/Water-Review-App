@@ -7,12 +7,13 @@
 
 import SwiftUI
 import AuthenticationServices
+import FirebaseAuth
 
 
 struct registerView: View
 {
     // Set up variables for username and password
-    @State private var username:String = ""
+    @State private var email:String = ""
     @State private var password:String = ""
     @State private var confirm:String = ""
     
@@ -34,7 +35,7 @@ struct registerView: View
             // Vstack for title, inputs, and buttons
             VStack{
                 
-                TextField(" Email", text: $username)
+                TextField(" Email", text: $email)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
@@ -50,17 +51,43 @@ struct registerView: View
                     .font(.system(size: 20))
                 
                 Button(action: {
-                    feedbackMsg = registerSubmit(email: username, password: password, confirm: confirm) { error in
-                        if let error = error {
-                          // Handle the error here
-                          feedbackMsg = "Error creating user: " + error.localizedDescription
-                        } else {
-                          // User created successfully
-                            feedbackMsg = "User created!"
+                    // Checks validity for registration and creates a new user
+                    
+                    
+                    // Check inputs have stuff
+                    if email == "" || password == "" || confirm == "" {
+                        feedbackMsg = "Error: One of the inputs is empty."
+                        self.showAlert = true
+                    }
+                    
+                    // Check email
+                    else if !isValidEmail(email) {
+                        feedbackMsg = "Error: The email is not valid."
+                        self.showAlert = true
+                    }
+                    
+                    // Check password and confirm match
+                    else if password != confirm {
+                        feedbackMsg = "Error: Password and confirmation do not match."
+                        self.showAlert = true
+                    }
+                    
+                    else {
+                        // Try to authenticate
+                        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                            if error == nil{
+                                // User created successfully
+                                feedbackMsg = "User created!"
+                                self.showAlert = true
+                            }
+                            else{
+                                // Handle the error here
+                                feedbackMsg = "Error creating user: " + error!.localizedDescription
+                                self.showAlert = true
+                            }
                         }
-                      }
-   
-                    self.showAlert = true
+                    }
+                    
                 }, label: {
                     Text("Sign Up")
                 })

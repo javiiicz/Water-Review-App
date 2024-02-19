@@ -49,14 +49,31 @@ struct loginView: View
                 
                 
                 Button(action: {
-                    Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                        if let error = error {
-                          // Handle the error here
-                          feedbackMsg = "Error signing in: " + error.localizedDescription
-                            self.showAlert = true
-                        } else {
-                          // Aigned In
-                            feedbackMsg = "Huzzah!"
+                    
+                    // Check inputs have stuff
+                    if email == "" || password == "" {
+                        feedbackMsg = "Error: One of the inputs is empty."
+                        self.showAlert = true
+                    }
+                    
+                    // Check email
+                    else if !isValidEmail(email) {
+                        feedbackMsg =  "Error: The email is not valid."
+                        self.showAlert = true
+                    }
+                    
+                    else {
+                        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                            if error == nil {
+                                //Success
+                                feedbackMsg =  "Huzzah!"
+                                self.showAlert = true
+                            }
+                            else {
+                                //Handle error
+                                feedbackMsg =  error!.localizedDescription
+                                self.showAlert = true
+                            }
                         }
                     }
 
