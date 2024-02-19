@@ -39,16 +39,22 @@ struct registerView: View
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                 
                 SecureField(" Password", text: $password)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                 
                 SecureField(" Confirm Password", text: $confirm)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                 
                 Button(action: {
                     // Checks validity for registration and creates a new user

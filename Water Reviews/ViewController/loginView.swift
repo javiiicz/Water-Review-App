@@ -41,11 +41,15 @@ struct loginView: View
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                 
                 SecureField(" Password", text: $password)
                     .frame(width: 250,height: 50)
                     .textFieldStyle(.roundedBorder)
                     .font(.system(size: 20))
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
                 
                 
                 Button(action: {
