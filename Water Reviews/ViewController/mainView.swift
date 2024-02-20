@@ -8,6 +8,9 @@
 import SwiftUI
 import AuthenticationServices
 
+// Current user storage
+
+
 
 // Main View
 struct mainView: View {

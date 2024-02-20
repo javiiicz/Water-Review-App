@@ -89,10 +89,8 @@ struct loginView: View
                             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                                 if error == nil {
                                     //Success
+                                    handleSignInResult(result: authResult!)
                                     self.signedIn = true
-                                    
-                                    
-                                    
                                 }
                                 else {
                                     //Handle error

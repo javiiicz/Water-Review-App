@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
+import AuthenticationServices
 
 
 // Returns true if the email has a valid format
@@ -16,5 +19,13 @@ func isValidEmail(_ email: String) -> Bool {
     return emailPred.evaluate(with: email)
 }
 
+
+// Handles sign in result
+func handleSignInResult(result: AuthDataResult) {
+    // Sign-in successful, get user ID
+    let userEmail = result.user.email
+    print("User ID: \(userEmail!)")
+    // Use the user ID here for further actions
+}
 
 
