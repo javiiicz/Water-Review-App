@@ -21,10 +21,14 @@ import FirebaseAuth
 
 struct landingView: View
 {
+    // Global user object
+    @StateObject var signedUser = SignedUser()
+    
     // View
     var body: some View
     {
         Text("Hello")
+        Text(signedUser.email)
     }
       
 }

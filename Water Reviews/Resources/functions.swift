@@ -21,9 +21,10 @@ func isValidEmail(_ email: String) -> Bool {
 
 
 // Handles sign in result
-func handleSignInResult(result: AuthDataResult) {
+func handleSignInResult(result: AuthDataResult, userObj: SignedUser) {
     // Sign-in successful, get user ID
     let userEmail = result.user.email
+    userObj.email = userEmail!
     print("User ID: \(userEmail!)")
     // Use the user ID here for further actions
 }
