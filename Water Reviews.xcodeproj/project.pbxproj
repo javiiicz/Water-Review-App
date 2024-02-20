@@ -17,6 +17,7 @@
 		3B96CB1B2B81B7F6008DCB9E /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B96CB1A2B81B7F6008DCB9E /* mainView.swift */; };
 		3B96CB1D2B81B853008DCB9E /* registerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B96CB1C2B81B853008DCB9E /* registerView.swift */; };
 		3B96CB1F2B81CDF7008DCB9E /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B96CB1E2B81CDF7008DCB9E /* functions.swift */; };
+		3B96CB212B841C08008DCB9E /* landingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B96CB202B841C08008DCB9E /* landingView.swift */; };
 		3BA8716D2B7C1D6E00A7FC1B /* Water_ReviewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8716C2B7C1D6E00A7FC1B /* Water_ReviewsApp.swift */; };
 		3BA8716F2B7C1D6E00A7FC1B /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8716E2B7C1D6E00A7FC1B /* loginView.swift */; };
 		3BA871712B7C1D6F00A7FC1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA871702B7C1D6F00A7FC1B /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		3B96CB1A2B81B7F6008DCB9E /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
 		3B96CB1C2B81B853008DCB9E /* registerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerView.swift; sourceTree = "<group>"; };
 		3B96CB1E2B81CDF7008DCB9E /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
+		3B96CB202B841C08008DCB9E /* landingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = landingView.swift; sourceTree = "<group>"; };
 		3BA871692B7C1D6E00A7FC1B /* Water Reviews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Water Reviews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA8716C2B7C1D6E00A7FC1B /* Water_ReviewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water_ReviewsApp.swift; sourceTree = "<group>"; };
 		3BA8716E2B7C1D6E00A7FC1B /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				3BA8716E2B7C1D6E00A7FC1B /* loginView.swift */,
 				3B96CB1A2B81B7F6008DCB9E /* mainView.swift */,
 				3B96CB1C2B81B853008DCB9E /* registerView.swift */,
+				3B96CB202B841C08008DCB9E /* landingView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				3B96CB1F2B81CDF7008DCB9E /* functions.swift in Sources */,
 				3B96CB1D2B81B853008DCB9E /* registerView.swift in Sources */,
 				3B96CB1B2B81B7F6008DCB9E /* mainView.swift in Sources */,
+				3B96CB212B841C08008DCB9E /* landingView.swift in Sources */,
 				3BA8716D2B7C1D6E00A7FC1B /* Water_ReviewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

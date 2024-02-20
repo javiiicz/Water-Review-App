@@ -23,6 +23,7 @@ struct registerView: View
     var body: some View
     {
         ZStack {
+            // Background
             Color.red
                 .ignoresSafeArea()
             Circle()
@@ -58,7 +59,6 @@ struct registerView: View
                 
                 Button(action: {
                     // Checks validity for registration and creates a new user
-                    
                     
                     // Check inputs have stuff
                     if email == "" || password == "" || confirm == "" {

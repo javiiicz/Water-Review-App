@@ -8,15 +8,17 @@
 import SwiftUI
 import AuthenticationServices
 
+
 // Main View
 struct mainView: View {
     var body: some View {
-        NavigationStack{
-            loginView()
-            
+        return Group {
+            NavigationStack{
+                loginView()
+                
+            }
+            .tint(.blue)
         }
-        .tint(.blue)
-        
     }
 }
 
