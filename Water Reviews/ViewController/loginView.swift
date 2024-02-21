@@ -24,9 +24,6 @@ struct loginView: View
     // State for showing landing page
     @State private var signedIn:Bool = false
     
-    // Global user object
-    @StateObject var signedUser = SignedUser()
-    
     // View
     var body: some View
     {
@@ -92,7 +89,7 @@ struct loginView: View
                             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                                 if error == nil {
                                     //Success
-                                    handleSignInResult(result: authResult!, userObj: signedUser)
+                                    handleSignInResult(result: authResult!)
                                     self.signedIn = true
                                 }
                                 else {

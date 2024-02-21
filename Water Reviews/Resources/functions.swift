@@ -10,6 +10,11 @@ import Firebase
 import FirebaseAuth
 import AuthenticationServices
 
+// Variables
+struct MyVariables {
+    static var email = ""
+    static var id = ""
+}
 
 // Returns true if the email has a valid format
 func isValidEmail(_ email: String) -> Bool {
@@ -21,10 +26,10 @@ func isValidEmail(_ email: String) -> Bool {
 
 
 // Handles sign in result
-func handleSignInResult(result: AuthDataResult, userObj: SignedUser) {
+func handleSignInResult(result: AuthDataResult) {
     // Sign-in successful, get user ID
     let userEmail = result.user.email
-    userObj.email = userEmail!
+    MyVariables.email = userEmail!
     print("User ID: \(userEmail!)")
     // Use the user ID here for further actions
 }

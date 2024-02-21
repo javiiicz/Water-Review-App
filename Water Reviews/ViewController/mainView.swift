@@ -9,12 +9,6 @@ import SwiftUI
 import AuthenticationServices
 import FirebaseAuth
 
-// Current user storage
-class SignedUser: ObservableObject {
-    @Published var email = ""
-    @Published var id = ""
-}
-
 
 // Main View
 struct mainView: View {
