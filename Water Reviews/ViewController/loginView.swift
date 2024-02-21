@@ -30,7 +30,7 @@ struct loginView: View
         ZStack {
             if signedIn {
                 landingView()
-                    
+                    .transition(.blurReplace)
             }
             else {
                 Color.blue
@@ -90,7 +90,11 @@ struct loginView: View
                                 if error == nil {
                                     //Success
                                     handleSignInResult(result: authResult!)
-                                    self.signedIn = true
+                                    
+                                    withAnimation{
+                                        self.signedIn = true
+                                    }
+                                    
                                 }
                                 else {
                                     //Handle error

@@ -24,3 +24,6 @@ struct mainView: View {
     }
 }
 
+#Preview {
+    mainView()
+}
