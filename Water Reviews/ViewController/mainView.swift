@@ -18,6 +18,7 @@ class SignedUser: ObservableObject {
 
 // Main View
 struct mainView: View {
+    
     var body: some View {
         return Group {
             NavigationStack{
