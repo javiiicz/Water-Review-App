@@ -30,7 +30,6 @@ func handleSignInResult(result: AuthDataResult) {
     // Sign-in successful, get user ID
     let userEmail = result.user.email
     MyVariables.email = userEmail!
-    print("User ID: \(userEmail!)")
     // Use the user ID here for further actions
 }
 
