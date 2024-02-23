@@ -24,6 +24,10 @@ struct loginView: View
     // State for showing landing page
     @State private var signedIn:Bool = false
     
+    // Var for hiding the keyboard
+    @FocusState private var IsFocused: Bool
+    
+    
     // View
     var body: some View
     {
@@ -53,6 +57,7 @@ struct loginView: View
                         .font(.system(size: 20))
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .focused($IsFocused)
                     
                     SecureField(" Password", text: $password)
                         .frame(width: 250,height: 50)
@@ -60,6 +65,7 @@ struct loginView: View
                         .font(.system(size: 20))
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
+                        .focused($IsFocused)
                     
                     // Sign in Button and logistics
                     Button(action: {
@@ -90,7 +96,7 @@ struct loginView: View
                                 if error == nil {
                                     //Success
                                     handleSignInResult(result: authResult!)
-                                    
+                                    self.IsFocused = false
                                     withAnimation{
                                         self.signedIn = true
                                     }
