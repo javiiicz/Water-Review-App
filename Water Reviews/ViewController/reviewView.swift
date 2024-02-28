@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct reviewView: View {
     
     // To go back
     @State private var goBack:Bool = false
+    
+    // Image var
+    @State private var showCamera = false
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: UIImage?
+    @State private var image: UIImage?
     
     var body: some View {
         
@@ -60,8 +67,54 @@ struct reviewView: View {
                     .offset(CGSize(width: 140.0, height: -300.0))
                 }
                 
+                VStack{
+                    if let selectedImage{
+                        Image(uiImage: selectedImage)
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    Button("Open camera") {
+                        self.showCamera.toggle()
+                    }
+                    .fullScreenCover(isPresented: self.$showCamera) {
+                        accessCameraView(selectedImage: self.$selectedImage)
+                    }
+                    .font(.system(size: 20))
+                    .tint(.black)
+                    .frame(width: 200, height: 100)
+                    .background(.blue.opacity(0.7))
+                    .clipShape(.buttonBorder)
+                
+                }
             }
         }
         
     }
+}
+
+struct accessCameraView: UIViewControllerRepresentable {
+    
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var isPresented
+    
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = context.coordinator
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+        
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(picker: self)
+    }
+}
+
+
+#Preview{
+    reviewView()
 }
