@@ -71,13 +71,14 @@ struct reviewView: View {
                     if let selectedImage{
                         Image(uiImage: selectedImage)
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 300, height: 300)
                             .clipShape(.rect(cornerRadius: CGFloat(10)))
                     }
                     else{
                         Image("placeholder")
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 300, height: 300)
                             .clipShape(.rect(cornerRadius: CGFloat(10)))
                     }
