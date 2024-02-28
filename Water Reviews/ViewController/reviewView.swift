@@ -71,8 +71,17 @@ struct reviewView: View {
                     if let selectedImage{
                         Image(uiImage: selectedImage)
                             .resizable()
-                            .scaledToFit()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 300, height: 300)
+                            .clipShape(.rect(cornerRadius: CGFloat(10)))
                     }
+                    else{
+                        Image("placeholder")
+                            .resizable()
+                            .frame(width: 300, height: 300)
+                            .clipShape(.rect(cornerRadius: CGFloat(10)))
+                    }
+                    
                     Button("Open camera") {
                         self.showCamera.toggle()
                     }
@@ -81,11 +90,14 @@ struct reviewView: View {
                     }
                     .font(.system(size: 20))
                     .tint(.black)
-                    .frame(width: 200, height: 100)
+                    .frame(width: 170, height: 60)
                     .background(.blue.opacity(0.7))
                     .clipShape(.buttonBorder)
-                
+                    
+                    
                 }
+
+                
             }
         }
         

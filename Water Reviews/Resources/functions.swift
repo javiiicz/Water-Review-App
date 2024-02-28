@@ -43,8 +43,22 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        guard var selectedImage = info[.originalImage] as? UIImage else { return }
+        selectedImage = cropImageToSquare(selectedImage)!
         self.picker.selectedImage = selectedImage
         self.picker.isPresented.wrappedValue.dismiss()
     }
+}
+
+
+// Crop image to square
+func cropImageToSquare(_ image: UIImage) -> UIImage? {
+  let ciImage = CIImage(image: image)
+    guard let inputImage = ciImage else { return nil }
+
+  let minDimension = min(inputImage.extent.width, inputImage.extent.height)
+  let cropRect = CGRect(x: 0, y: 0, width: minDimension, height: minDimension)
+
+  let croppedImage = inputImage.cropped(to: cropRect)
+    return UIImage(ciImage: croppedImage)
 }
