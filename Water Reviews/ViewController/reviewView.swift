@@ -26,6 +26,8 @@ struct reviewView: View {
     @State private var initialDragOffset2: CGFloat = 0.0
     @State private var dragOffset3: CGFloat = 0.0
     @State private var initialDragOffset3: CGFloat = 0.0
+    @State private var dragOffset4: CGFloat = 0.0
+    @State private var initialDragOffset4: CGFloat = 0.0
     private let sliderWidth: CGFloat = 220.0
     private let circleSpacing: CGFloat = 44.0
     
@@ -276,6 +278,67 @@ struct reviewView: View {
                                 .frame(width: 320, height: 80)
                                 .padding()
                             
+                            }
+                            
+                            // Location slider
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15, style: .circular)
+                                    .frame(width: 330, height: 100)
+                                    .foregroundStyle(.white)
+                                    .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
+                                    
+                                
+                                VStack {
+                                    HStack{
+                                        Text("Rate the location")
+                                            .bold()
+                                            .font(.title3)
+                                        Text((floor(dragOffset4 / 2.05)).description)
+                                            .font(.system(size: 15))
+                                    }
+                                    
+                                    HStack{
+                                        Text("📍")
+                                            .font(.system(size: 40))
+                                            .transition(.scale)
+                                        ZStack (alignment: .leading){
+                                            MyShape().frame(width:230, height:15)
+                                                .foregroundStyle(Color(.black.opacity(0.1)))
+                                            MyShape().frame(width: dragOffset4 + 10, height: 15)
+                                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.red, .green]), startPoint: .leading, endPoint: .trailing))
+                                            HStack (spacing: circleSpacing){
+                                                ForEach(0..<5){index in
+                                                    Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
+                                            }
+                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset4)
+                                                .foregroundColor(.white).shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
+                                                .gesture(
+                                                    DragGesture()
+                                                        .onChanged({ value in
+                                                            let change = value.translation.width
+                                                            let newValue = min(max(initialDragOffset4 + change, 0), self.sliderWidth - 15)
+                                                            self.dragOffset4 = newValue
+                                                        })
+                                                        .onEnded({ value in
+                                                            self.initialDragOffset4 = dragOffset4
+                                                        })
+                                                )
+                                                .onAppear(perform: {
+                                                    self.initialDragOffset4 = dragOffset4
+                                                })
+                                            
+                                        }
+                                    }
+                                }
+                                .frame(width: 320, height: 80)
+                                .padding()
+                            
+                            }
+                            
+                            // Average
+                            HStack{
+                                let average = (floor(dragOffset1 / 2.05) + floor(dragOffset2 / 2.05) + floor(dragOffset3 / 2.05) + floor(dragOffset4 / 2.05)) / 4
+                                Text((round(average * 100)/100).description + "/ 100")
                             }
                             
                             // Text Field anf Submit
