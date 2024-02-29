@@ -13,6 +13,8 @@ struct reviewView: View {
     // To go back
     @State private var goBack:Bool = false
     
+    @State private var textFieldId: String = UUID().uuidString // To hidekeyboard when tapped outside textFields
+    
     // Image var
     @State private var showCamera = false
     @State private var selectedItem: PhotosPickerItem?
@@ -76,7 +78,7 @@ struct reviewView: View {
                             withAnimation {
                                 self.goBack = true
                             }
-
+                            
                         }, label: {
                             Text("Back")
                                 .tint(.black)
@@ -114,14 +116,14 @@ struct reviewView: View {
                                 .background(.blue.opacity(0.7))
                                 .clipShape(.buttonBorder)
                             }
-                        
+                            
                             // Flow slider
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15, style: .circular)
                                     .frame(width: 330, height: 100)
                                     .foregroundStyle(.white)
                                     .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
-                                    
+                                
                                 
                                 VStack {
                                     HStack{
@@ -167,7 +169,7 @@ struct reviewView: View {
                                 }
                                 .frame(width: 320, height: 80)
                                 .padding()
-                            
+                                
                             }
                             
                             // Flavor slider
@@ -176,7 +178,7 @@ struct reviewView: View {
                                     .frame(width: 330, height: 100)
                                     .foregroundStyle(.white)
                                     .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
-                                    
+                                
                                 
                                 VStack {
                                     HStack{
@@ -222,7 +224,7 @@ struct reviewView: View {
                                 }
                                 .frame(width: 320, height: 80)
                                 .padding()
-                            
+                                
                             }
                             
                             // Temp slider
@@ -231,7 +233,7 @@ struct reviewView: View {
                                     .frame(width: 330, height: 100)
                                     .foregroundStyle(.white)
                                     .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
-                                    
+                                
                                 
                                 VStack {
                                     HStack{
@@ -277,7 +279,7 @@ struct reviewView: View {
                                 }
                                 .frame(width: 320, height: 80)
                                 .padding()
-                            
+                                
                             }
                             
                             // Location slider
@@ -286,7 +288,7 @@ struct reviewView: View {
                                     .frame(width: 330, height: 100)
                                     .foregroundStyle(.white)
                                     .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
-                                    
+                                
                                 
                                 VStack {
                                     HStack{
@@ -332,7 +334,7 @@ struct reviewView: View {
                                 }
                                 .frame(width: 320, height: 80)
                                 .padding()
-                            
+                                
                             }
                             
                             // Average
@@ -341,9 +343,11 @@ struct reviewView: View {
                                 Text((round(average * 100)/100).description + "/ 100")
                             }
                             
-                            // Text Field anf Submit
+                            // Text Field and Submit
                             VStack{
                                 TextField(" Description", text: $description, axis: .vertical)
+                                    .id(textFieldId)
+                                    .onTapGesture {} // So that outer tap gesture has no effect on field
                                     .frame(width: 330,height: 250)
                                     .textFieldStyle(.roundedBorder)
                                     .font(.system(size: 20))
@@ -361,13 +365,15 @@ struct reviewView: View {
                         }
                     }
                     
+                }.onTapGesture { // whenever tapped within VStack
+                    textFieldId = UUID().uuidString
+                    
+                    
+                    
                 }
-                
-
-                
             }
+            
         }
-        
     }
 }
 
