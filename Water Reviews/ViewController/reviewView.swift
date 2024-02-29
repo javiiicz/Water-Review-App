@@ -19,7 +19,7 @@ struct reviewView: View {
     @State private var selectedImage: UIImage?
     @State private var image: UIImage?
     
-    //Slider
+    //Sliders
     @State private var dragOffset1: CGFloat = 0.0
     @State private var initialDragOffset1: CGFloat = 0.0
     @State private var dragOffset2: CGFloat = 0.0
@@ -28,6 +28,9 @@ struct reviewView: View {
     @State private var initialDragOffset3: CGFloat = 0.0
     private let sliderWidth: CGFloat = 220.0
     private let circleSpacing: CGFloat = 44.0
+    
+    // Description
+    @State var description:String = ""
     
     var body: some View {
         
@@ -80,33 +83,36 @@ struct reviewView: View {
                     
                     ScrollView{
                         VStack{
-                            if let selectedImage{
-                                Image(uiImage: selectedImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 300, height: 300)
-                                    .clipShape(.rect(cornerRadius: CGFloat(10)))
+                            // Camera and Button
+                            VStack{
+                                if let selectedImage{
+                                    Image(uiImage: selectedImage)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 300, height: 300)
+                                        .clipShape(.rect(cornerRadius: CGFloat(10)))
+                                }
+                                else{
+                                    Image("placeholder")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 300, height: 300)
+                                        .clipShape(.rect(cornerRadius: CGFloat(10)))
+                                }
+                                
+                                Button("Open camera") {
+                                    self.showCamera.toggle()
+                                }
+                                .fullScreenCover(isPresented: self.$showCamera) {
+                                    accessCameraView(selectedImage: self.$selectedImage)
+                                }
+                                .font(.system(size: 20))
+                                .tint(.black)
+                                .frame(width: 170, height: 60)
+                                .background(.blue.opacity(0.7))
+                                .clipShape(.buttonBorder)
                             }
-                            else{
-                                Image("placeholder")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 300, height: 300)
-                                    .clipShape(.rect(cornerRadius: CGFloat(10)))
-                            }
-                            
-                            Button("Open camera") {
-                                self.showCamera.toggle()
-                            }
-                            .fullScreenCover(isPresented: self.$showCamera) {
-                                accessCameraView(selectedImage: self.$selectedImage)
-                            }
-                            .font(.system(size: 20))
-                            .tint(.black)
-                            .frame(width: 170, height: 60)
-                            .background(.blue.opacity(0.7))
-                            .clipShape(.buttonBorder)
-                            
+                        
                             // Flow slider
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15, style: .circular)
@@ -129,6 +135,10 @@ struct reviewView: View {
                                             .font(.system(size: 40))
                                             .transition(.scale)
                                         ZStack (alignment: .leading){
+                                            MyShape().frame(width:230, height:15)
+                                                .foregroundStyle(Color(.black.opacity(0.1)))
+                                            MyShape().frame(width: dragOffset1 + 10, height: 15)
+                                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.1), .blue]), startPoint: .leading, endPoint: .trailing))
                                             HStack (spacing: circleSpacing){
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
@@ -180,6 +190,10 @@ struct reviewView: View {
                                             .font(.system(size: 40))
                                             .transition(.scale)
                                         ZStack (alignment: .leading){
+                                            MyShape().frame(width:230, height:15)
+                                                .foregroundStyle(Color(.black.opacity(0.1)))
+                                            MyShape().frame(width: dragOffset2 + 10, height: 15)
+                                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.pink, .yellow]), startPoint: .leading, endPoint: .trailing))
                                             HStack (spacing: circleSpacing){
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
@@ -231,6 +245,10 @@ struct reviewView: View {
                                             .font(.system(size: 40))
                                             .transition(.scale)
                                         ZStack (alignment: .leading){
+                                            MyShape().frame(width:230, height:15)
+                                                .foregroundStyle(Color(.black.opacity(0.1)))
+                                            MyShape().frame(width: dragOffset3 + 10, height: 15)
+                                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.red, .blue.opacity(0.8)]), startPoint: .leading, endPoint: .trailing))
                                             HStack (spacing: circleSpacing){
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
@@ -260,9 +278,24 @@ struct reviewView: View {
                             
                             }
                             
-                            
+                            // Text Field anf Submit
+                            VStack{
+                                TextField(" Description", text: $description, axis: .vertical)
+                                    .frame(width: 330,height: 250)
+                                    .textFieldStyle(.roundedBorder)
+                                    .font(.system(size: 20))
+                                    .textInputAutocapitalization(.never)
+                                    .lineLimit(7...7)
+                                
+                                Button(action: {}, label: {
+                                    Text("Submit")
+                                })
+                                .font(.system(size: 20))
+                                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,height: 50)
+                                .background(.white .opacity(0.3))
+                                .clipShape(.buttonBorder)
+                            }
                         }
-                        .padding()
                     }
                     
                 }

@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import AuthenticationServices
+import SwiftUI
 
 // Variables
 struct MyVariables {
@@ -46,5 +47,31 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         guard let selectedImage = info[.originalImage] as? UIImage else { return }
         self.picker.selectedImage = selectedImage
         self.picker.isPresented.wrappedValue.dismiss()
+    }
+}
+
+// Shape creator for sliders
+struct MyShape: Shape {
+    func path(in rect: CGRect) -> Path{
+        var path = Path()
+        let width = rect.size.width
+        let height = rect.size.height
+        path.move(to: CGPoint(x:0, y: 0.5*height))
+        
+        path.addCurve(to: CGPoint(x:0.01522*width, y:0.26261*height), control1: CGPoint(x:0, y:0.37048*height), control2: CGPoint(x:0.00677*width, y:0.26486*height))
+        path.addLine(to: CGPoint(x: 0.9674*width, y: 0.00869*height))
+        
+        path.addCurve(to: CGPoint(x:width, y:0.5*height), control1: CGPoint(x:0.98531*width, y:0.00392*height), control2: CGPoint(x:width, y:0.22528*height))
+        path.addLine(to: CGPoint(x: width, y: 0.5*height))
+        
+        path.addCurve(to: CGPoint(x:0.9674*width, y:0.99131*height), control1: CGPoint(x:width, y:0.77473*height), control2: CGPoint(x:0.98531*width, y:0.99608*height))
+        path.addLine(to: CGPoint(x: 0.01522*width, y: 0.73739*height))
+        
+        path.addCurve(to: CGPoint(x:0, y:0.5*height), control1: CGPoint(x:0.00677*width, y:0.73514*height), control2: CGPoint(x:0, y:0.62952*height))
+        path.addLine(to: CGPoint(x: 0*width, y: 0.5*height))
+        
+        path.closeSubpath()
+        
+        return path
     }
 }
