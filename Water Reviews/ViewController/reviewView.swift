@@ -20,8 +20,12 @@ struct reviewView: View {
     @State private var image: UIImage?
     
     //Slider
-    @State private var dragOffset: CGFloat = 0.0
-    @State private var initialDragOffset: CGFloat = 0.0
+    @State private var dragOffset1: CGFloat = 0.0
+    @State private var initialDragOffset1: CGFloat = 0.0
+    @State private var dragOffset2: CGFloat = 0.0
+    @State private var initialDragOffset2: CGFloat = 0.0
+    @State private var dragOffset3: CGFloat = 0.0
+    @State private var initialDragOffset3: CGFloat = 0.0
     private let sliderWidth: CGFloat = 220.0
     private let circleSpacing: CGFloat = 44.0
     
@@ -52,29 +56,28 @@ struct reviewView: View {
                     .frame(height: 700)
                     .offset(CGSize(width: 0, height: 100))
                 
-                // Title VStack
+                // Main VStack
                 VStack{
-                    Text("Review")
-                        .font(.system(size: 40,weight: .heavy))
-                        .offset(CGSize(width: -70, height: -250))
-                    Text(MyVariables.email)
-                        .font(.system(size: 15,weight: .heavy))
-                        .offset(CGSize(width: -70, height: -250))
-                    Button(action: {
-                        withAnimation {
-                            self.goBack = true
+                    HStack(spacing: 90){
+                        VStack{
+                            Text("Review")
+                                .font(.system(size: 40,weight: .heavy))
+                            
+                            Text(MyVariables.email)
+                                .font(.system(size: 15,weight: .heavy))
                         }
                         
-                        
-                    }, label: {
-                        Text("Back")
-                            .tint(.black)
-                    })
-                    .offset(CGSize(width: 140.0, height: -300.0))
-                }
-                
-                // Content VStack
-                VStack {
+                        Button(action: {
+                            withAnimation {
+                                self.goBack = true
+                            }
+
+                        }, label: {
+                            Text("Back")
+                                .tint(.black)
+                        })
+                    }.padding([.top], 80)
+                    
                     ScrollView{
                         VStack{
                             if let selectedImage{
@@ -117,7 +120,7 @@ struct reviewView: View {
                                         Text("Rate the flow")
                                             .bold()
                                             .font(.title3)
-                                        Text((floor(dragOffset / 2.05)).description)
+                                        Text((floor(dragOffset1 / 2.05)).description)
                                             .font(.system(size: 15))
                                     }
                                     
@@ -130,21 +133,21 @@ struct reviewView: View {
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
                                             }
-                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset)
+                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset1)
                                                 .foregroundColor(.white).shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
                                                 .gesture(
                                                     DragGesture()
                                                         .onChanged({ value in
                                                             let change = value.translation.width
-                                                            let newValue = min(max(initialDragOffset + change, 0), self.sliderWidth - 15)
-                                                            self.dragOffset = newValue
+                                                            let newValue = min(max(initialDragOffset1 + change, 0), self.sliderWidth - 15)
+                                                            self.dragOffset1 = newValue
                                                         })
                                                         .onEnded({ value in
-                                                            self.initialDragOffset = dragOffset
+                                                            self.initialDragOffset1 = dragOffset1
                                                         })
                                                 )
                                                 .onAppear(perform: {
-                                                    self.initialDragOffset = dragOffset
+                                                    self.initialDragOffset1 = dragOffset1
                                                 })
                                             
                                         }
@@ -168,7 +171,7 @@ struct reviewView: View {
                                         Text("Rate the flavor")
                                             .bold()
                                             .font(.title3)
-                                        Text((floor(dragOffset / 2.05)).description)
+                                        Text((floor(dragOffset2 / 2.05)).description)
                                             .font(.system(size: 15))
                                     }
                                     
@@ -181,21 +184,21 @@ struct reviewView: View {
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
                                             }
-                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset)
+                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset2)
                                                 .foregroundColor(.white).shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
                                                 .gesture(
                                                     DragGesture()
                                                         .onChanged({ value in
                                                             let change = value.translation.width
-                                                            let newValue = min(max(initialDragOffset + change, 0), self.sliderWidth - 15)
-                                                            self.dragOffset = newValue
+                                                            let newValue = min(max(initialDragOffset2 + change, 0), self.sliderWidth - 15)
+                                                            self.dragOffset2 = newValue
                                                         })
                                                         .onEnded({ value in
-                                                            self.initialDragOffset = dragOffset
+                                                            self.initialDragOffset2 = dragOffset2
                                                         })
                                                 )
                                                 .onAppear(perform: {
-                                                    self.initialDragOffset = dragOffset
+                                                    self.initialDragOffset2 = dragOffset2
                                                 })
                                             
                                         }
@@ -219,7 +222,7 @@ struct reviewView: View {
                                         Text("Rate the temperature")
                                             .bold()
                                             .font(.title3)
-                                        Text((floor(dragOffset / 2.05)).description)
+                                        Text((floor(dragOffset3 / 2.05)).description)
                                             .font(.system(size: 15))
                                     }
                                     
@@ -232,21 +235,21 @@ struct reviewView: View {
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
                                             }
-                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset)
+                                            Circle().frame(width: 30,height: 30).offset(x: dragOffset3)
                                                 .foregroundColor(.white).shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
                                                 .gesture(
                                                     DragGesture()
                                                         .onChanged({ value in
                                                             let change = value.translation.width
-                                                            let newValue = min(max(initialDragOffset + change, 0), self.sliderWidth - 15)
-                                                            self.dragOffset = newValue
+                                                            let newValue = min(max(initialDragOffset3 + change, 0), self.sliderWidth - 15)
+                                                            self.dragOffset3 = newValue
                                                         })
                                                         .onEnded({ value in
-                                                            self.initialDragOffset = dragOffset
+                                                            self.initialDragOffset3 = dragOffset3
                                                         })
                                                 )
                                                 .onAppear(perform: {
-                                                    self.initialDragOffset = dragOffset
+                                                    self.initialDragOffset3 = dragOffset3
                                                 })
                                             
                                         }
@@ -261,10 +264,8 @@ struct reviewView: View {
                         }
                         .padding()
                     }
-                    .frame(width: .infinity, height: 600, alignment: .top)
                     
                 }
-                .frame(width: .infinity, height: 480, alignment: .top)
                 
 
                 
