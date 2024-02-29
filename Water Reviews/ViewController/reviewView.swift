@@ -19,7 +19,27 @@ struct reviewView: View {
     @State private var selectedImage: UIImage?
     @State private var image: UIImage?
     
+    //Slider
+    @State private var dragOffset: CGFloat = 0.0
+    @State private var initialDragOffset: CGFloat = 0.0
+    private let sliderWidth: CGFloat = 220.0
+    private let circleSpacing: CGFloat = 44.0
+    struct EmojiSection{
+        let emoji: String
+        let description: String
+        let range: ClosedRange<Double>
+    }
+    private let sections: [EmojiSection] = [
+        EmojiSection(emoji: "☹️", description: "Sad", range: 0...0.2),
+        EmojiSection(emoji: "🙁", description: "Subpar", range: 0.2...0.45),
+        EmojiSection(emoji: "😐", description: "Okay", range: 0.45...0.70),
+        EmojiSection(emoji: "🙂", description: "Good", range: 0.70...0.93),
+        EmojiSection(emoji: "😁", description: "Excellent", range: 0.93...1)
+    ]
+    
     var body: some View {
+        let progress = dragOffset / sliderWidth
+        let currentSection = sections.first(where: {$0.range.contains(Double(progress))}) ?? sections.last
         
         if goBack{
             landingView()
@@ -94,6 +114,57 @@ struct reviewView: View {
                     .frame(width: 170, height: 60)
                     .background(.blue.opacity(0.7))
                     .clipShape(.buttonBorder)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 15, style: .circular)
+                            .frame(width: 330, height: 100)
+                            .foregroundStyle(.white)
+                            .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
+                            
+                        
+                        VStack {
+                            HStack{
+                                Text("Rate your experience")
+                                    .bold()
+                                    .font(.title3)
+                                Text(currentSection?.description ?? "")
+                                    .font(.system(size: 15))
+                            }
+                            
+                            HStack{
+                                Text(currentSection?.emoji ?? "")
+                                    .font(.system(size: 40))
+                                    .transition(.scale)
+                                    .animation(.easeOut(duration: 0.3), value: currentSection?.emoji)
+                                ZStack (alignment: .leading){
+                                    HStack (spacing: circleSpacing){
+                                        ForEach(0..<sections.count,id:\.self){index in
+                                            Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
+                                    }
+                                    Circle().frame(width: 30,height: 30).offset(x: dragOffset)
+                                        .foregroundColor(.white).shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
+                                        .gesture(
+                                            DragGesture()
+                                                .onChanged({ value in
+                                                    let change = value.translation.width
+                                                    let newValue = min(max(initialDragOffset + change, 0), self.sliderWidth - 15)
+                                                    self.dragOffset = newValue
+                                                })
+                                                .onEnded({ value in
+                                                    self.initialDragOffset = dragOffset
+                                                })
+                                        )
+                                        .onAppear(perform: {
+                                            self.initialDragOffset = dragOffset
+                                        })
+                                    
+                                }
+                            }
+                        }
+                        .frame(width: 320, height: 80)
+                        .padding()
+                    
+                    }
                     
                     
                 }
