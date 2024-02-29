@@ -305,7 +305,7 @@ struct reviewView: View {
                                             MyShape().frame(width:230, height:15)
                                                 .foregroundStyle(Color(.black.opacity(0.1)))
                                             MyShape().frame(width: dragOffset4 + 10, height: 15)
-                                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.red, .green]), startPoint: .leading, endPoint: .trailing))
+                                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.green, .yellow]), startPoint: .leading, endPoint: .trailing))
                                             HStack (spacing: circleSpacing){
                                                 ForEach(0..<5){index in
                                                     Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
