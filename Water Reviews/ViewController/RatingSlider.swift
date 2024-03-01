@@ -41,7 +41,7 @@ struct RatingSlider: View {
                         MyShape().frame(width:230, height:15)
                             .foregroundStyle(Color(.black.opacity(0.1)))
                         MyShape().frame(width: dragOffset + 10, height: 15)
-                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.pink, .yellow]), startPoint: .leading, endPoint: .trailing))
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white, .blue]), startPoint: .leading, endPoint: .trailing))
                         HStack (spacing: circleSpacing){
                             ForEach(0..<5){index in
                                 Circle().frame(width: 6+CGFloat(index) * 1, height: 6 + CGFloat(index) * 1)}
