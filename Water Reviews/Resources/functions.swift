@@ -10,6 +10,8 @@ import Firebase
 import FirebaseAuth
 import AuthenticationServices
 import SwiftUI
+import FirebaseFirestore
+
 
 // Variables
 struct MyVariables {
@@ -73,5 +75,22 @@ struct MyShape: Shape {
         path.closeSubpath()
         
         return path
+    }
+}
+
+func submitReview() -> Void{
+    let db = Firestore.firestore()
+    let fountainRef = db.collection("waterFountains").document()
+    fountainRef.setData([
+        "id": fountainRef.documentID, // Use generated ID
+        "rating": 1,
+        "description": "hello",
+        "photoUrls": "imageUrlString"
+    ]) { error in
+        if let error = error {
+            print("Error saving water fountain data:", error.localizedDescription)
+        } else {
+            print("Water fountain data saved successfully!")
+        }
     }
 }

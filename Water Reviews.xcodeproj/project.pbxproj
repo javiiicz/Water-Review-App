@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0D29E22B924ED400FA3F70 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3B0D29E12B924ED400FA3F70 /* FirebaseFirestore */; };
+		3B0D29E42B92587D00FA3F70 /* RatingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0D29E32B92587D00FA3F70 /* RatingSlider.swift */; };
 		3B71DDE62B8911E100D3C58D /* reviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71DDE52B8911E100D3C58D /* reviewView.swift */; };
 		3B71DDE82B8911F000D3C58D /* exploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71DDE72B8911F000D3C58D /* exploreView.swift */; };
 		3B96CB092B7FE4B7008DCB9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B96CB082B7FE4B6008DCB9E /* GoogleService-Info.plist */; };
@@ -27,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B0D29E32B92587D00FA3F70 /* RatingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingSlider.swift; sourceTree = "<group>"; };
 		3B71DDE52B8911E100D3C58D /* reviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reviewView.swift; sourceTree = "<group>"; };
 		3B71DDE72B8911F000D3C58D /* exploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exploreView.swift; sourceTree = "<group>"; };
 		3B96CB082B7FE4B6008DCB9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 				3B96CB0E2B7FE55F008DCB9E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				3B96CB142B7FE55F008DCB9E /* FirebaseAppCheck in Frameworks */,
 				3B96CB122B7FE55F008DCB9E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				3B0D29E22B924ED400FA3F70 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +81,7 @@
 				3B96CB202B841C08008DCB9E /* landingView.swift */,
 				3B71DDE52B8911E100D3C58D /* reviewView.swift */,
 				3B71DDE72B8911F000D3C58D /* exploreView.swift */,
+				3B0D29E32B92587D00FA3F70 /* RatingSlider.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				3B96CB112B7FE55F008DCB9E /* FirebaseAnalyticsWithoutAdIdSupport */,
 				3B96CB132B7FE55F008DCB9E /* FirebaseAppCheck */,
 				3B96CB162B7FE9EA008DCB9E /* FirebaseAuth */,
+				3B0D29E12B924ED400FA3F70 /* FirebaseFirestore */,
 			);
 			productName = "Water Reviews";
 			productReference = 3BA871692B7C1D6E00A7FC1B /* Water Reviews.app */;
@@ -209,6 +215,7 @@
 				3BA8716F2B7C1D6E00A7FC1B /* loginView.swift in Sources */,
 				3B96CB1F2B81CDF7008DCB9E /* functions.swift in Sources */,
 				3B96CB1D2B81B853008DCB9E /* registerView.swift in Sources */,
+				3B0D29E42B92587D00FA3F70 /* RatingSlider.swift in Sources */,
 				3B71DDE62B8911E100D3C58D /* reviewView.swift in Sources */,
 				3B96CB1B2B81B7F6008DCB9E /* mainView.swift in Sources */,
 				3B96CB212B841C08008DCB9E /* landingView.swift in Sources */,
@@ -452,6 +459,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3B0D29E12B924ED400FA3F70 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B96CB0A2B7FE55F008DCB9E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		3B96CB0B2B7FE55F008DCB9E /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3B96CB0A2B7FE55F008DCB9E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
