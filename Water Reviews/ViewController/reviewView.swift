@@ -131,17 +131,16 @@ struct reviewView: View {
                             // Location slider
                             RatingSlider(emoji: "📍", type: "location", dragOffset: $dragOffset4, initialDragOffset: $initialDragOffset4)
                             
+                            // Ratings
+                            let rating1 = floor(dragOffset1 / 20.5)
+                            let rating2 = floor(dragOffset2 / 20.5)
+                            let rating3 = floor(dragOffset3 / 20.5)
+                            let rating4 = floor(dragOffset4 / 20.5)
+                            
                             // Average
                             HStack{
-                                // Ratings
-                                let rating1 = floor(dragOffset1 / 20.5)
-                                let rating2 = floor(dragOffset2 / 20.5)
-                                let rating3 = floor(dragOffset3 / 20.5)
-                                let rating4 = floor(dragOffset4 / 20.5)
-                                
-                                // Average
                                 let average = ((rating1 + rating2 + rating3 + rating4) * 10) / 4
-                                Text((round(average * 100)/100).description + "/ 100")
+                                Text((round(average * 100)/100).description + " / 100")
                             }
                             
                             // Text Field and Submit
@@ -156,7 +155,7 @@ struct reviewView: View {
                                     .lineLimit(7...7)
                                 
                                 Button(action: {
-                                    submitReview()
+                                    submitReview(r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description)
                                 }, label: {
                                     Text("Submit")
                                 })

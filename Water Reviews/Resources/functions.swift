@@ -78,13 +78,16 @@ struct MyShape: Shape {
     }
 }
 
-func submitReview() -> Void{
+func submitReview(r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: String) -> Void{
     let db = Firestore.firestore()
     let fountainRef = db.collection("waterFountains").document()
     fountainRef.setData([
         "id": fountainRef.documentID, // Use generated ID
-        "rating": 1,
-        "description": "hello",
+        "flow": r1,
+        "flavor": r2,
+        "temperature": r3,
+        "location": r4,
+        "description": desc,
         "photoUrls": "imageUrlString"
     ]) { error in
         if let error = error {
