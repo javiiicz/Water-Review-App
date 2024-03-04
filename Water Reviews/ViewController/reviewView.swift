@@ -37,7 +37,8 @@ struct reviewView: View {
     // State variables for feedback messages
     @State private var showAlert:Bool = false
     
-    // Description
+    // Name and Description fields
+    @State var name:String = ""
     @State var description:String = ""
     
     var body: some View {
@@ -91,6 +92,19 @@ struct reviewView: View {
                     
                     ScrollView{
                         VStack{
+                            // Name Text Field
+                            VStack{
+                                TextField(" Name", text: $name)
+                                    .id(textFieldId)
+                                    .onTapGesture {} // So that outer tap gesture has no effect on field
+                                    .frame(width: 330)
+                                    .textFieldStyle(.roundedBorder)
+                                    .font(.system(size: 25, weight: .bold))
+                                    .textInputAutocapitalization(.never)
+                                    .autocorrectionDisabled()
+                                    .multilineTextAlignment(.center)
+                            }
+                            
                             // Camera and Button
                             VStack{
                                 if let selectedImage{
@@ -157,7 +171,7 @@ struct reviewView: View {
                                     .lineLimit(7...7)
                                 
                                 Button(action: {
-                                    submitReview(r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description, image: selectedImage ?? UIImage(imageLiteralResourceName: "placeholder"))
+                                    submitReview(name: name, r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description, image: selectedImage ?? UIImage(imageLiteralResourceName: "placeholder"))
                                     
                                     // Reset Sliders and desciption
                                     self.dragOffset1 = 0.0
@@ -174,6 +188,7 @@ struct reviewView: View {
                                     
                                     self.selectedImage = UIImage(imageLiteralResourceName: "placeholder")
                                     
+                                    self.name = ""
                                     self.description = ""
                                     
                                     self.showAlert.toggle()

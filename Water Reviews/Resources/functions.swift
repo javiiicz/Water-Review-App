@@ -79,7 +79,7 @@ struct MyShape: Shape {
     }
 }
 
-func submitReview(r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: String, image: UIImage) -> Void{
+func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: String, image: UIImage) -> Void{
     
     // Access the Database
     let db = Firestore.firestore()
@@ -102,6 +102,7 @@ func submitReview(r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: Stri
     // Update the database
     fountainRef.setData([
         "id": fountainID, // Use generated ID
+        "name": name,
         "flow": r1,
         "flavor": r2,
         "temperature": r3,
