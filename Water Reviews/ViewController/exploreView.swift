@@ -66,3 +66,6 @@ struct exploreView: View {
     }
 }
 
+#Preview {
+    exploreView()
+}

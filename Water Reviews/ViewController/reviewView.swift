@@ -136,16 +136,16 @@ struct reviewView: View {
                             }
                             
                             // Flow slider
-                            RatingSlider(emoji: "🌊", type: "flow", dragOffset: $dragOffset1, initialDragOffset: $initialDragOffset1)
+                            ratingSlider(emoji: "🌊", type: "flow", dragOffset: $dragOffset1, initialDragOffset: $initialDragOffset1)
                             
                             // Flavor slider
-                            RatingSlider(emoji: "👅", type: "flavor", dragOffset: $dragOffset2, initialDragOffset: $initialDragOffset2)
+                            ratingSlider(emoji: "👅", type: "flavor", dragOffset: $dragOffset2, initialDragOffset: $initialDragOffset2)
                             
                             // Temp slider
-                            RatingSlider(emoji: "❄️", type: "temperature", dragOffset: $dragOffset3, initialDragOffset: $initialDragOffset3)
+                            ratingSlider(emoji: "❄️", type: "temperature", dragOffset: $dragOffset3, initialDragOffset: $initialDragOffset3)
                             
                             // Location slider
-                            RatingSlider(emoji: "📍", type: "location", dragOffset: $dragOffset4, initialDragOffset: $initialDragOffset4)
+                            ratingSlider(emoji: "📍", type: "location", dragOffset: $dragOffset4, initialDragOffset: $initialDragOffset4)
                             
                             // Ratings
                             let rating1 = floor(dragOffset1 / 20.5)

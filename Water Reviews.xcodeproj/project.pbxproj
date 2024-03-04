@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B0D29E22B924ED400FA3F70 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3B0D29E12B924ED400FA3F70 /* FirebaseFirestore */; };
-		3B0D29E42B92587D00FA3F70 /* RatingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0D29E32B92587D00FA3F70 /* RatingSlider.swift */; };
+		3B0D29E42B92587D00FA3F70 /* ratingSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0D29E32B92587D00FA3F70 /* ratingSlider.swift */; };
 		3B71DDE62B8911E100D3C58D /* reviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71DDE52B8911E100D3C58D /* reviewView.swift */; };
 		3B71DDE82B8911F000D3C58D /* exploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71DDE72B8911F000D3C58D /* exploreView.swift */; };
 		3B96CB092B7FE4B7008DCB9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B96CB082B7FE4B6008DCB9E /* GoogleService-Info.plist */; };
@@ -27,10 +27,11 @@
 		3BA871712B7C1D6F00A7FC1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA871702B7C1D6F00A7FC1B /* Assets.xcassets */; };
 		3BA871742B7C1D6F00A7FC1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA871732B7C1D6F00A7FC1B /* Preview Assets.xcassets */; };
 		3BAE110E2B9574FD00EF78CC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3BAE110D2B9574FD00EF78CC /* FirebaseStorage */; };
+		3BAE11102B9580A200EF78CC /* fountainUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE110F2B9580A200EF78CC /* fountainUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3B0D29E32B92587D00FA3F70 /* RatingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingSlider.swift; sourceTree = "<group>"; };
+		3B0D29E32B92587D00FA3F70 /* ratingSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ratingSlider.swift; sourceTree = "<group>"; };
 		3B71DDE52B8911E100D3C58D /* reviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reviewView.swift; sourceTree = "<group>"; };
 		3B71DDE72B8911F000D3C58D /* exploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exploreView.swift; sourceTree = "<group>"; };
 		3B96CB082B7FE4B6008DCB9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		3BA8716E2B7C1D6E00A7FC1B /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		3BA871702B7C1D6F00A7FC1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BA871732B7C1D6F00A7FC1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3BAE110F2B9580A200EF78CC /* fountainUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fountainUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +85,8 @@
 				3B96CB202B841C08008DCB9E /* landingView.swift */,
 				3B71DDE52B8911E100D3C58D /* reviewView.swift */,
 				3B71DDE72B8911F000D3C58D /* exploreView.swift */,
-				3B0D29E32B92587D00FA3F70 /* RatingSlider.swift */,
+				3B0D29E32B92587D00FA3F70 /* ratingSlider.swift */,
+				3BAE110F2B9580A200EF78CC /* fountainUnit.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -218,10 +221,11 @@
 				3BA8716F2B7C1D6E00A7FC1B /* loginView.swift in Sources */,
 				3B96CB1F2B81CDF7008DCB9E /* functions.swift in Sources */,
 				3B96CB1D2B81B853008DCB9E /* registerView.swift in Sources */,
-				3B0D29E42B92587D00FA3F70 /* RatingSlider.swift in Sources */,
+				3B0D29E42B92587D00FA3F70 /* ratingSlider.swift in Sources */,
 				3B71DDE62B8911E100D3C58D /* reviewView.swift in Sources */,
 				3B96CB1B2B81B7F6008DCB9E /* mainView.swift in Sources */,
 				3B96CB212B841C08008DCB9E /* landingView.swift in Sources */,
+				3BAE11102B9580A200EF78CC /* fountainUnit.swift in Sources */,
 				3B71DDE82B8911F000D3C58D /* exploreView.swift in Sources */,
 				3BA8716D2B7C1D6E00A7FC1B /* Water_ReviewsApp.swift in Sources */,
 			);

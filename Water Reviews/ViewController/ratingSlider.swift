@@ -1,5 +1,5 @@
 //
-//  RatingSlider.swift
+//  ratingSlider.swift
 //  Water Reviews
 //
 //  Created by Javier Carrillo on 3/1/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RatingSlider: View {
+struct ratingSlider: View {
     private let sliderWidth: CGFloat = 220.0
     private let circleSpacing: CGFloat = 44.0
     
