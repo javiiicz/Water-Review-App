@@ -33,7 +33,9 @@ struct reviewView: View {
     
     @State private var dragOffset4: CGFloat = 0.0
     @State private var initialDragOffset4: CGFloat = 0.0
-
+    
+    // State variables for feedback messages
+    @State private var showAlert:Bool = false
     
     // Description
     @State var description:String = ""
@@ -156,6 +158,26 @@ struct reviewView: View {
                                 
                                 Button(action: {
                                     submitReview(r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description, image: selectedImage ?? UIImage(imageLiteralResourceName: "placeholder"))
+                                    
+                                    // Reset Sliders and desciption
+                                    self.dragOffset1 = 0.0
+                                    self.initialDragOffset1 = 0.0
+                                    
+                                    self.dragOffset2 = 0.0
+                                    self.initialDragOffset2 = 0.0
+                                    
+                                    self.dragOffset3 = 0.0
+                                    self.initialDragOffset3 = 0.0
+                                    
+                                    self.dragOffset4 = 0.0
+                                    self.initialDragOffset4 = 0.0
+                                    
+                                    self.selectedImage = UIImage(imageLiteralResourceName: "placeholder")
+                                    
+                                    self.description = ""
+                                    
+                                    self.showAlert.toggle()
+                                    
                                 }, label: {
                                     Text("Submit")
                                 })
@@ -163,6 +185,9 @@ struct reviewView: View {
                                 .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,height: 50)
                                 .background(.white .opacity(0.3))
                                 .clipShape(.buttonBorder)
+                                .alert(isPresented: $showAlert, content: {
+                                    Alert(title: Text("Feedback"), message: Text("Success uploading review!"))
+                                })
                             }
                         }
                     }
