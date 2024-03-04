@@ -93,11 +93,12 @@ struct fountainUnit: View {
         
         storageRef.getData(maxSize: maxSize) { data, error in
             if let error = error {
-                // error occurred
+                print(error)
             } else {
                 // Data is returned
                 let image = UIImage(data: data!)
                 self.image = image
+                print("Success")
             }
         }
     }
