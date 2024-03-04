@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct exploreView: View {
     
@@ -66,9 +67,11 @@ struct exploreView: View {
                     // Scrollable view
                     ScrollView{
                         VStack{
-                            fountainUnit()
-                            fountainUnit()
-                            fountainUnit()
+                            let fountains = getFountains()
+                            
+                            ForEach(fountains, id: \.self) { fountain in
+                                fountainUnit()
+                            }
                         }
                         .frame(maxWidth: .infinity)
                     }

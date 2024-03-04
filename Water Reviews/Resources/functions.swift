@@ -117,3 +117,22 @@ func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFlo
         }
     }
 }
+
+
+func getFountains() -> [QueryDocumentSnapshot] {
+    let db = Firestore.firestore()
+    let query = db.collection("waterFountains").order(by: "createdAt")
+    var listOfFountains: [QueryDocumentSnapshot]?
+    
+    query.getDocuments { (querySnapshot, error) in
+        if let error = error {
+            print("Error fetching water fountains:", error.localizedDescription)
+            return
+        }
+        
+        listOfFountains = querySnapshot?.documents
+    }
+    
+    
+    return listOfFountains ?? []
+}
