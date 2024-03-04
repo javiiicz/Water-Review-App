@@ -90,7 +90,7 @@ func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFlo
     // Upload photo to Firebase Storage
     let storageRef = Storage.storage().reference()
     let photoRef = storageRef.child("waterFountains/" + fountainID + ".jpg")
-    let imageData = image.jpegData(compressionQuality: 0.5)!
+    let imageData = image.jpegData(compressionQuality: 0.2)!
     photoRef.putData(imageData, metadata: nil) { metadata, error in
         if let error = error {
             print("Error uploading photo:", error.localizedDescription)
