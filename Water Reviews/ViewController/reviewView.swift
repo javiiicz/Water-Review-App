@@ -10,10 +10,11 @@ import PhotosUI
 
 struct reviewView: View {
     
-    // To go back
+    // Variable o go back
     @State private var goBack:Bool = false
     
-    @State private var textFieldId: String = UUID().uuidString // To hidekeyboard when tapped outside textFields
+    // Var to hidekeyboard when tapped outside textFields
+    @State private var textFieldId: String = UUID().uuidString
     
     // Image var
     @State private var showCamera = false
@@ -42,7 +43,7 @@ struct reviewView: View {
     @State var description:String = ""
     
     var body: some View {
-        
+        // Redirect to landing if user set goBack
         if goBack{
             landingView()
                 .transition(.push(from: .leading))
@@ -70,6 +71,7 @@ struct reviewView: View {
                 
                 // Main VStack
                 VStack{
+                    // Title
                     HStack(spacing: 90){
                         VStack{
                             Text("Review")
@@ -79,11 +81,11 @@ struct reviewView: View {
                                 .font(.system(size: 15,weight: .heavy))
                         }
                         
+                        // Back button
                         Button(action: {
                             withAnimation {
                                 self.goBack = true
                             }
-                            
                         }, label: {
                             Text("Back")
                                 .tint(.black)
@@ -107,6 +109,7 @@ struct reviewView: View {
                             
                             // Camera and Button
                             VStack{
+                                // Sets image
                                 if let selectedImage{
                                     Image(uiImage: selectedImage)
                                         .resizable()
@@ -114,6 +117,7 @@ struct reviewView: View {
                                         .frame(width: 300, height: 300)
                                         .clipShape(.rect(cornerRadius: CGFloat(10)))
                                 }
+                                // If not, sets placeholder
                                 else{
                                     Image("placeholder")
                                         .resizable()
@@ -122,6 +126,7 @@ struct reviewView: View {
                                         .clipShape(.rect(cornerRadius: CGFloat(10)))
                                 }
                                 
+                                // Button to open camera using accessCameraView
                                 Button("Open camera") {
                                     self.showCamera.toggle()
                                 }
@@ -153,13 +158,13 @@ struct reviewView: View {
                             let rating3 = floor(dragOffset3 / 20.5)
                             let rating4 = floor(dragOffset4 / 20.5)
                             
-                            // Average
+                            // Calculate average and show
                             HStack{
                                 let average = ((rating1 + rating2 + rating3 + rating4) * 10) / 4
                                 Text((round(average * 100)/100).description + " / 100")
                             }
                             
-                            // Text Field and Submit
+                            // Description and Submit button
                             VStack{
                                 TextField(" Description", text: $description, axis: .vertical)
                                     .id(textFieldId)
@@ -170,7 +175,9 @@ struct reviewView: View {
                                     .textInputAutocapitalization(.never)
                                     .lineLimit(7...7)
                                 
+                                // Submit
                                 Button(action: {
+                                    // Call submitreview with all the info
                                     submitReview(name: name, r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description, image: selectedImage ?? UIImage(imageLiteralResourceName: "placeholder"))
                                     
                                     // Reset Sliders and desciption
@@ -191,6 +198,7 @@ struct reviewView: View {
                                     self.name = ""
                                     self.description = ""
                                     
+                                    // Show the success alert
                                     self.showAlert.toggle()
                                     
                                 }, label: {
@@ -217,9 +225,10 @@ struct reviewView: View {
 }
 
 
-// Struct for accessing the camera
+// Struct for accessing the camera (With help from Gemini AI)
 struct accessCameraView: UIViewControllerRepresentable {
     
+    // Setup image variable and presentation
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) var isPresented
     

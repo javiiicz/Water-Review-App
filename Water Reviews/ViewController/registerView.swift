@@ -4,6 +4,7 @@
 //
 //  Created by Javier Carrillo on 2/17/24.
 //
+// View that lets user register an account
 
 import SwiftUI
 import AuthenticationServices
@@ -17,6 +18,7 @@ struct registerView: View
     @State private var password:String = ""
     @State private var confirm:String = ""
     
+    // Variables for feedback msgs
     @State private var showAlert:Bool = false
     @State private var feedbackMsg = ""
     
@@ -33,7 +35,7 @@ struct registerView: View
                 .scale(1.2)
                 .foregroundColor(.white.opacity(0.3))
             
-            // Vstack for title, inputs, and buttons
+            // Vstack for inputs and buttons
             VStack{
                 
                 TextField(" Email", text: $email)
@@ -93,7 +95,6 @@ struct registerView: View
                             }
                         }
                     }
-                    
                 }, label: {
                     Text("Sign Up")
                 })
@@ -104,15 +105,11 @@ struct registerView: View
                 .alert(isPresented: $showAlert, content: {
                     Alert(title: Text("Feedback"), message: Text(feedbackMsg))
                 })
-                
-                
-            .padding()
+                .padding()
             }
             .navigationTitle("Register")
             .toolbarBackground(.visible, for: .navigationBar)
             .navigationBarTitleDisplayMode(.large)
-            
         }
-        
     }
 }

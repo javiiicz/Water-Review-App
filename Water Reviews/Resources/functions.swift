@@ -4,6 +4,7 @@
 //
 //  Created by Javier Carrillo on 2/18/24.
 //
+// The functions used throughout the project
 
 import Foundation
 import Firebase
@@ -14,11 +15,11 @@ import SwiftUI
 import FirebaseFirestore
 
 
-// Variables
+// Global Variables (just used for email)
 struct MyVariables {
     static var email = ""
-    static var fountains: [QueryDocumentSnapshot] = []
 }
+
 
 // Returns true if the email has a valid format
 func isValidEmail(_ email: String) -> Bool {
@@ -37,6 +38,7 @@ func handleSignInResult(result: AuthDataResult) {
 }
 
 
+// Camera Coordinator (Gemini AI)
 // Coordinator will help to preview the selected image in the View.
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var picker: accessCameraView
@@ -52,7 +54,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
 }
 
-// Shape creator for sliders
+
+// Custom Shape for ratingSlider
 struct MyShape: Shape {
     func path(in rect: CGRect) -> Path{
         var path = Path()
@@ -78,6 +81,8 @@ struct MyShape: Shape {
     }
 }
 
+
+// Stores the review in FirebaseDatabase
 func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: String, image: UIImage) -> Void{
     
     // Access the Database
@@ -120,10 +125,14 @@ func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFlo
 }
 
 
+// Obtains the fountains in the database
 func getFountains(completion: @escaping ([QueryDocumentSnapshot]?) -> Void) {
+    // Initialize database
     let db = Firestore.firestore()
-        let query = db.collection("waterFountains").order(by: "createdAt", descending: true)
+    // Create query
+    let query = db.collection("waterFountains").order(by: "createdAt", descending: true)
 
+    // Get documents
     query.getDocuments { (querySnapshot, error) in
         if let error = error {
             print("Error fetching water fountains:", error.localizedDescription)

@@ -4,6 +4,7 @@
 //
 //  Created by Javier Carrillo on 2/13/24.
 //
+// This View lets users sign in to the app
 
 import SwiftUI
 import AuthenticationServices
@@ -32,11 +33,13 @@ struct loginView: View
     var body: some View
     {
         ZStack {
+            // If signed in, show landing page
             if signedIn {
                 landingView()
                     .transition(.blurReplace)
             }
             else {
+                // Background
                 Color.blue
                     .ignoresSafeArea()
                 Circle()
@@ -100,8 +103,8 @@ struct loginView: View
                                     withAnimation{
                                         self.signedIn = true
                                     }
-                                    
                                 }
+                                
                                 else {
                                     //Handle error
                                     feedbackMsg =  error!.localizedDescription
@@ -109,7 +112,6 @@ struct loginView: View
                                 }
                             }
                         }
-
                     }, label: {
                         Text("Sign In")
                     })

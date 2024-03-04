@@ -4,13 +4,16 @@
 //
 //  Created by Javier Carrillo on 3/3/24.
 //
+// This is an individual unit for the water fountains shown in the explore page.
 
 import SwiftUI
 import FirebaseStorage
 
-// This is an individual unit for the water fountains shown in the explore page.
 struct fountainUnit: View {
+    // Var for alert
     @State var showAlert:Bool = false
+    
+    // Passed info variables
     var name:String = ""
     var author:String = ""
     var desc:String = ""
@@ -20,26 +23,29 @@ struct fountainUnit: View {
     var location:Int = 10
     var imgPath:String = ""
     
+    // Image var
     @State private var image: UIImage? = nil
-    
     
     var body: some View {
         ZStack {
+            // Background frame
             RoundedRectangle(cornerRadius: 15, style: .circular)
                 .frame(width: 330, height: 330)
                 .foregroundStyle(.white)
                 .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 0)
             
-            
             VStack{
+                // Name
                 Text(name)
                     .font(.system(size: 25, weight: .bold))
                 
+                // Author
                 Text("By " + author)
                     .font(.system(size: 15))
                 
                 HStack{
                     ZStack{
+                        // Image
                         if let image = image {
                             Image(uiImage: image) // Use downloaded image
                                 .resizable()
@@ -54,12 +60,13 @@ struct fountainUnit: View {
                                 .frame(width: 200, height: 200)
                                 .clipShape(.rect(cornerRadius: CGFloat(10)))
                                 .onTapGesture {
-                                    downloadImage()
+                                    downloadImage() // Download image when tapped
                                 }
                         }
                     }
                     
                     VStack{
+                        // Ratings + average
                         Text("🌊 : " + String(flow))
                         Text("👅 : " + String(flavor))
                         Text("❄️ : " + String(temperature))
@@ -81,13 +88,19 @@ struct fountainUnit: View {
         }
     }
     
+    // Downloads an image and stores it in self.image variable
     private func downloadImage() {
+        // Initializae Firebase storage
         let storage = Storage.storage()
+        
+        // Create reference to image path
         let storageRef = storage.reference(withPath: imgPath)
         
-        let intVar = 1 // Assuming this is within Int64 range
-        let maxSize = Int64(intVar) * 1024 * 1024
+        // Set max size to 1Mb avoid downloading big images
+        // Images taken should not be more than 500 Kb
+        let maxSize = Int64(1) * 1024 * 1024
         
+        // Get the data
         storageRef.getData(maxSize: maxSize) { data, error in
             if let error = error {
                 print(error)
@@ -101,7 +114,3 @@ struct fountainUnit: View {
     }
 }
 
-
-#Preview {
-    fountainUnit()
-}

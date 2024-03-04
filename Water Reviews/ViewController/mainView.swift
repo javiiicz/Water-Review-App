@@ -4,6 +4,7 @@
 //
 //  Created by Javier Carrillo on 2/17/24.
 //
+// Redirects to loginView
 
 import SwiftUI
 import AuthenticationServices
@@ -17,14 +18,8 @@ struct mainView: View {
         return Group {
             NavigationStack{
                 loginView()
-                
             }
             .tint(.blue)
         }
     }
-}
-
-
-#Preview {
-    mainView()
 }

@@ -4,19 +4,21 @@
 //
 //  Created by Javier Carrillo on 2/23/24.
 //
+// Displays each review in a scrollable area with all info
 
 import SwiftUI
 import FirebaseFirestore
 
 struct exploreView: View {
     
-    // To go back
+    // Variable to go back
     @State private var goBack:Bool = false
     
+    // Variable for list of fountains
     @State private var fountains: [QueryDocumentSnapshot] = []
     
     var body: some View {
-        
+        // IF user set goBlack flag, redirect
         if goBack{
             landingView()
                 .transition(.push(from: .leading))
@@ -59,7 +61,6 @@ struct exploreView: View {
                             withAnimation {
                                 self.goBack = true
                             }
-                            
                         }, label: {
                             Text("Back")
                                 .tint(.black)
@@ -69,6 +70,7 @@ struct exploreView: View {
                     // Scrollable view
                     ScrollView{
                         VStack{
+                            // For each element in fountains, create a fountainUnit with all the info
                             ForEach(fountains, id: \.self) { fountain in
                                 fountainUnit(name: fountain.get("name") as! String, 
                                              author: fountain.get("createdBy") as! String,
@@ -88,13 +90,8 @@ struct exploreView: View {
                             }
                         }
                     }
-                    
                 }
             }
         }
     }
-}
-
-#Preview {
-    exploreView()
 }

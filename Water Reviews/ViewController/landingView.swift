@@ -4,6 +4,7 @@
 //
 //  Created by Javier Carrillo on 2/19/24.
 //
+// Landing view user see when logged in
 
 import Foundation
 import SwiftUI
@@ -21,8 +22,8 @@ struct landingView: View
     // View
     var body: some View
     {
+        // Handles switching to other views
         if signedIn {
-            
             if showReview{
                 reviewView()
                     .transition(.push(from: .leading))
@@ -57,9 +58,12 @@ struct landingView: View
                         Text("Welcome")
                             .font(.system(size: 40,weight: .heavy))
                             .offset(CGSize(width: -70, height: -250))
+                        
                         Text(MyVariables.email)
                             .font(.system(size: 15,weight: .heavy))
                             .offset(CGSize(width: -70, height: -250))
+                        
+                        // Button for signing out and returning to log in view
                         Button(action: {
                             let firebaseAuth = Auth.auth()
                             do {
@@ -70,8 +74,6 @@ struct landingView: View
                             withAnimation {
                                 signedIn = false
                             }
-                            
-                            
                         }, label: {
                             Text("Sign out")
                                 .tint(.black)
@@ -79,17 +81,18 @@ struct landingView: View
                         .offset(CGSize(width: 140.0, height: -300.0))
                     }
                     
+                    // Button Vstack
                     VStack{
                         Text("What would you like to do?")
                             .font(.system(size: 20,weight: .heavy))
                         
+                        // Review Button
                         Button(action: {
                             withAnimation {
                                 self.showReview = true
                             }
                         }, label: {
                             Text("Review")
-                            
                         })
                         .font(.system(size: 30, weight: .heavy))
                         .tint(.black)
@@ -97,7 +100,7 @@ struct landingView: View
                         .background(.blue.opacity(0.7))
                         .clipShape(.buttonBorder)
                         
-                        
+                        // Explore Button
                         Button(action: {
                             withAnimation {
                                 self.showExplore = true
@@ -112,20 +115,14 @@ struct landingView: View
                         .clipShape(.buttonBorder)
                     }
                     .offset(CGSize(width: 0, height: 90.0))
-                    
                 }
             }
         }
         
+        // If not signed in, redirect to login View
         else{
             loginView()
                 .transition(.opacity)
         }
-        
     }
-    
-}
-
-#Preview {
-    landingView()
 }
