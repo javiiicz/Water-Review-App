@@ -17,7 +17,6 @@ import FirebaseFirestore
 // Variables
 struct MyVariables {
     static var email = ""
-    static var id = ""
 }
 
 // Returns true if the email has a valid format
@@ -31,10 +30,9 @@ func isValidEmail(_ email: String) -> Bool {
 
 // Handles sign in result
 func handleSignInResult(result: AuthDataResult) {
-    // Sign-in successful, get user ID
+    // Sign-in successful, get user email
     let userEmail = result.user.email
     MyVariables.email = userEmail!
-    // Use the user ID here for further actions
 }
 
 
@@ -109,7 +107,8 @@ func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFlo
         "location": r4,
         "description": desc,
         "photoPath": "waterFountains/" + fountainID + ".jpg",
-        "createdAt": Timestamp()
+        "createdAt": Timestamp(),
+        "createdBy": MyVariables.email
     ]) { error in
         if let error = error {
             print("Error saving water fountain data:", error.localizedDescription)

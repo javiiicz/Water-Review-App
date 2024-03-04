@@ -23,6 +23,9 @@ struct fountainUnit: View {
                 Text("Fountain Name")
                     .font(.system(size: 25, weight: .bold))
                 
+                Text("By email@email.com")
+                    .font(.system(size: 15))
+                
                 HStack{
                     Image("placeholder")
                         .resizable()
