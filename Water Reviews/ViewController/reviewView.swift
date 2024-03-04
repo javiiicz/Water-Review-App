@@ -155,7 +155,7 @@ struct reviewView: View {
                                     .lineLimit(7...7)
                                 
                                 Button(action: {
-                                    submitReview(r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description)
+                                    submitReview(r1: rating1, r2: rating2, r3: rating3, r4: rating4, desc: description, image: selectedImage ?? UIImage(imageLiteralResourceName: "placeholder"))
                                 }, label: {
                                     Text("Submit")
                                 })

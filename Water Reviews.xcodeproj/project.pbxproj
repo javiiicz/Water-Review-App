@@ -26,6 +26,7 @@
 		3BA8716F2B7C1D6E00A7FC1B /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8716E2B7C1D6E00A7FC1B /* loginView.swift */; };
 		3BA871712B7C1D6F00A7FC1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA871702B7C1D6F00A7FC1B /* Assets.xcassets */; };
 		3BA871742B7C1D6F00A7FC1B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA871732B7C1D6F00A7FC1B /* Preview Assets.xcassets */; };
+		3BAE110E2B9574FD00EF78CC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3BAE110D2B9574FD00EF78CC /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 				3B96CB0C2B7FE55F008DCB9E /* FirebaseAnalytics in Frameworks */,
 				3B96CB0E2B7FE55F008DCB9E /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				3B96CB142B7FE55F008DCB9E /* FirebaseAppCheck in Frameworks */,
+				3BAE110E2B9574FD00EF78CC /* FirebaseStorage in Frameworks */,
 				3B96CB122B7FE55F008DCB9E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				3B0D29E22B924ED400FA3F70 /* FirebaseFirestore in Frameworks */,
 			);
@@ -153,6 +155,7 @@
 				3B96CB132B7FE55F008DCB9E /* FirebaseAppCheck */,
 				3B96CB162B7FE9EA008DCB9E /* FirebaseAuth */,
 				3B0D29E12B924ED400FA3F70 /* FirebaseFirestore */,
+				3BAE110D2B9574FD00EF78CC /* FirebaseStorage */,
 			);
 			productName = "Water Reviews";
 			productReference = 3BA871692B7C1D6E00A7FC1B /* Water Reviews.app */;
@@ -493,6 +496,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3B96CB0A2B7FE55F008DCB9E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		3BAE110D2B9574FD00EF78CC /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B96CB0A2B7FE55F008DCB9E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

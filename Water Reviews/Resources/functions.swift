@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 import FirebaseAuth
 import AuthenticationServices
 import SwiftUI
@@ -78,17 +79,35 @@ struct MyShape: Shape {
     }
 }
 
-func submitReview(r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: String) -> Void{
+func submitReview(r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFloat, desc: String, image: UIImage) -> Void{
+    
+    // Access the Database
     let db = Firestore.firestore()
     let fountainRef = db.collection("waterFountains").document()
+    
+    // Get Fountain ID
+    let fountainID = fountainRef.documentID
+    
+    // Upload photo to Firebase Storage
+    let storageRef = Storage.storage().reference()
+    let photoRef = storageRef.child("waterFountains/" + fountainID + ".jpg")
+    let imageData = image.jpegData(compressionQuality: 0.5)!
+    photoRef.putData(imageData, metadata: nil) { metadata, error in
+        if let error = error {
+            print("Error uploading photo:", error.localizedDescription)
+            return
+        }
+    }
+    
+    // Update the database
     fountainRef.setData([
-        "id": fountainRef.documentID, // Use generated ID
+        "id": fountainID, // Use generated ID
         "flow": r1,
         "flavor": r2,
         "temperature": r3,
         "location": r4,
         "description": desc,
-        "photoUrls": "imageUrlString"
+        "photoPath": "waterFountains/" + fountainID + ".jpg"
     ]) { error in
         if let error = error {
             print("Error saving water fountain data:", error.localizedDescription)
