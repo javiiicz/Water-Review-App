@@ -130,7 +130,7 @@ struct reviewView: View {
                                 }
                                 .font(.system(size: 20))
                                 .tint(.black)
-                                .frame(width: 170, height: 60)
+                                .frame(width: 300, height: 40)
                                 .background(.blue.opacity(0.7))
                                 .clipShape(.buttonBorder)
                             }
@@ -164,7 +164,7 @@ struct reviewView: View {
                                 TextField(" Description", text: $description, axis: .vertical)
                                     .id(textFieldId)
                                     .onTapGesture {} // So that outer tap gesture has no effect on field
-                                    .frame(width: 330,height: 250)
+                                    .frame(width: 330)
                                     .textFieldStyle(.roundedBorder)
                                     .font(.system(size: 20))
                                     .textInputAutocapitalization(.never)
