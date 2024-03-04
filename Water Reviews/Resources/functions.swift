@@ -108,7 +108,8 @@ func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFlo
         "temperature": r3,
         "location": r4,
         "description": desc,
-        "photoPath": "waterFountains/" + fountainID + ".jpg"
+        "photoPath": "waterFountains/" + fountainID + ".jpg",
+        "createdAt": FieldValue.serverTimestamp()
     ]) { error in
         if let error = error {
             print("Error saving water fountain data:", error.localizedDescription)
