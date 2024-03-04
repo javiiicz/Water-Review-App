@@ -53,13 +53,10 @@ struct fountainUnit: View {
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 200, height: 200)
                                 .clipShape(.rect(cornerRadius: CGFloat(10)))
+                                .onTapGesture {
+                                    downloadImage()
+                                }
                         }
-                        
-                        Button("Download Image") {
-                                downloadImage()
-                              }
-                        .offset(CGSize(width: 0.0, height: 85.0))
-                        .tint(.gray)
                     }
                     
                     VStack{
