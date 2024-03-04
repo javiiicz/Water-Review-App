@@ -132,6 +132,5 @@ func getFountains(completion: @escaping ([QueryDocumentSnapshot]?) -> Void) {
         }
         let fountains = querySnapshot?.documents ?? []
         completion(fountains) // Return with fetched data
-        print("Updated fountains:", fountains)
     }
 }

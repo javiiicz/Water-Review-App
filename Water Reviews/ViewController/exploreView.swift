@@ -70,7 +70,15 @@ struct exploreView: View {
                     ScrollView{
                         VStack{
                             ForEach(fountains, id: \.self) { fountain in
-                                fountainUnit()
+                                fountainUnit(name: fountain.get("name") as! String, 
+                                             author: fountain.get("createdBy") as! String,
+                                             desc: fountain.get("description") as! String,
+                                             flow: fountain.get("flow") as! Int,
+                                             flavor: fountain.get("flavor") as! Int,
+                                             temperature: fountain.get("temperature") as! Int,
+                                             location: fountain.get("location") as! Int,
+                                             imgPath: fountain.get("photoPath") as! String
+                                )
                             }
                         }
                         .frame(maxWidth: .infinity)

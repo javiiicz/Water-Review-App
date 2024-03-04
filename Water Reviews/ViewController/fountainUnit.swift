@@ -6,10 +6,22 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 // This is an individual unit for the water fountains shown in the explore page.
 struct fountainUnit: View {
     @State var showAlert:Bool = false
+    var name:String = ""
+    var author:String = ""
+    var desc:String = ""
+    var flow:Int = 10
+    var flavor:Int = 10
+    var temperature:Int = 10
+    var location:Int = 10
+    var imgPath:String = ""
+    
+    @State private var image: UIImage? = nil
+    
     
     var body: some View {
         ZStack {
@@ -20,26 +32,44 @@ struct fountainUnit: View {
             
             
             VStack{
-                Text("Fountain Name")
+                Text(name)
                     .font(.system(size: 25, weight: .bold))
                 
-                Text("By email@email.com")
+                Text("By " + author)
                     .font(.system(size: 15))
                 
                 HStack{
-                    Image("placeholder")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 200, height: 200)
-                        .clipShape(.rect(cornerRadius: CGFloat(10)))
+                    ZStack{
+                        if let image = image {
+                            Image(uiImage: image) // Use downloaded image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 200, height: 200)
+                                .clipShape(.rect(cornerRadius: CGFloat(10)))
+                        } else {
+                            // Placeholder image while downloading
+                            Image("placeholder")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 200, height: 200)
+                                .clipShape(.rect(cornerRadius: CGFloat(10)))
+                        }
+                        
+                        Button("Download Image") {
+                                downloadImage()
+                              }
+                        .offset(CGSize(width: 0.0, height: 85.0))
+                        .tint(.gray)
+                    }
                     
                     VStack{
-                        Text("🌊 : 10")
-                        Text("👅 : 10")
-                        Text("❄️ : 10")
-                        Text("📍 : 10")
+                        Text("🌊 : " + String(flow))
+                        Text("👅 : " + String(flavor))
+                        Text("❄️ : " + String(temperature))
+                        Text("📍 : " + String(location))
                         Text("")
-                        Text("100")
+                        let average = (flow + flavor + temperature + location)/4
+                        Text(String(average * 10))
                     }
                     .font(.system(size: 25, weight: .bold))
                 }
@@ -49,13 +79,30 @@ struct fountainUnit: View {
                 })
                 .font(.system(size: 20))
                 .alert(isPresented: $showAlert, content: {
-                    Alert(title: Text("Description"), message: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida, mi eget aliquet sollicitudin, eros metus accumsan lacus, feugiat fringilla tortor tortor sed mi. Vestibulum erat turpis, suscipit vel nisi et, malesuada dignissim felis. Vestibulum libero elit, feugiat et nunc et, aliquet rutrum neque. In mattis augue at ultricies fermentum. Aenean imperdiet justo eget nisi tempor, sit amet suscipit augue sagittis. Aliquam egestas urna sed enim euismod egestas. Integer lorem magna, vehicula a nulla vitae, porttitor feugiat lacus. Vivamus nec diam et lorem bibendum fermentum lacinia vitae augue."))})
-            
+                    Alert(title: Text("Description"), message: Text(desc))})
             }
-            
+        }
+    }
+    
+    private func downloadImage() {
+        let storage = Storage.storage()
+        let storageRef = storage.reference(withPath: imgPath)
+        
+        let intVar = 1 // Assuming this is within Int64 range
+        let maxSize = Int64(intVar) * 1024 * 1024
+        
+        storageRef.getData(maxSize: maxSize) { data, error in
+            if let error = error {
+                // error occurred
+            } else {
+                // Data is returned
+                let image = UIImage(data: data!)
+                self.image = image
+            }
         }
     }
 }
+
 
 #Preview {
     fountainUnit()
