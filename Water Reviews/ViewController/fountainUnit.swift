@@ -65,8 +65,8 @@ struct fountainUnit: View {
                         Text("❄️ : " + String(temperature))
                         Text("📍 : " + String(location))
                         Text("")
-                        let average = (flow + flavor + temperature + location)/4
-                        Text(String(average * 10))
+                        let average = CGFloat(flow + flavor + temperature + location)
+                        Text(String(average * 10/4))
                     }
                     .font(.system(size: 25, weight: .bold))
                 }
