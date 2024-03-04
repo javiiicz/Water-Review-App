@@ -205,7 +205,8 @@ struct reviewView: View {
                                 })
                             }
                         }
-                    } 
+                    }
+                    .frame(maxWidth: .infinity)
                 }.onTapGesture { // whenever tapped within VStack
                     textFieldId = UUID().uuidString
                     

@@ -70,7 +70,9 @@ struct exploreView: View {
                             fountainUnit()
                             fountainUnit()
                         }
+                        .frame(maxWidth: .infinity)
                     }
+                    
                 }
                 
             }
