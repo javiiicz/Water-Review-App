@@ -20,7 +20,7 @@ struct fountainUnit: View {
             
             
             VStack{
-                Text("Fountain Name...")
+                Text("Fountain Name")
                     .font(.system(size: 25, weight: .bold))
                 
                 HStack{

@@ -39,25 +39,38 @@ struct exploreView: View {
                     .frame(height: 700)
                     .offset(CGSize(width: 0, height: 100))
                 
-                // Title VStack
+                // Main VStack
                 VStack{
-                    Text("Explore")
-                        .font(.system(size: 40,weight: .heavy))
-                        .offset(CGSize(width: -70, height: -250))
-                    Text(MyVariables.email)
-                        .font(.system(size: 15,weight: .heavy))
-                        .offset(CGSize(width: -70, height: -250))
-                    Button(action: {
-                        withAnimation {
-                            self.goBack = true
+                    
+                    //Title
+                    HStack(spacing: 90){
+                        VStack{
+                            Text("Explore")
+                                .font(.system(size: 40,weight: .heavy))
+                            
+                            Text(MyVariables.email)
+                                .font(.system(size: 15,weight: .heavy))
                         }
                         
-                        
-                    }, label: {
-                        Text("Back")
-                            .tint(.black)
-                    })
-                    .offset(CGSize(width: 140.0, height: -300.0))
+                        Button(action: {
+                            withAnimation {
+                                self.goBack = true
+                            }
+                            
+                        }, label: {
+                            Text("Back")
+                                .tint(.black)
+                        })
+                    }.padding([.top], 80)
+                    
+                    // Scrollable view
+                    ScrollView{
+                        VStack{
+                            fountainUnit()
+                            fountainUnit()
+                            fountainUnit()
+                        }
+                    }
                 }
                 
             }

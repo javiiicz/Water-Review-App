@@ -205,16 +205,12 @@ struct reviewView: View {
                                 })
                             }
                         }
-                    }
-                    
+                    } 
                 }.onTapGesture { // whenever tapped within VStack
                     textFieldId = UUID().uuidString
                     
-                    
-                    
                 }
             }
-            
         }
     }
 }
@@ -241,9 +237,4 @@ struct accessCameraView: UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
         return Coordinator(picker: self)
     }
-}
-
-
-#Preview{
-    reviewView()
 }
