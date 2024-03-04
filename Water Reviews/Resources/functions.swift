@@ -17,6 +17,7 @@ import FirebaseFirestore
 // Variables
 struct MyVariables {
     static var email = ""
+    static var fountains: [QueryDocumentSnapshot] = []
 }
 
 // Returns true if the email has a valid format
@@ -119,20 +120,18 @@ func submitReview(name: String, r1: CGFloat, r2: CGFloat, r3: CGFloat, r4: CGFlo
 }
 
 
-func getFountains() -> [QueryDocumentSnapshot] {
+func getFountains(completion: @escaping ([QueryDocumentSnapshot]?) -> Void) {
     let db = Firestore.firestore()
-    let query = db.collection("waterFountains").order(by: "createdAt")
-    var listOfFountains: [QueryDocumentSnapshot]?
-    
+        let query = db.collection("waterFountains").order(by: "createdAt")
+
     query.getDocuments { (querySnapshot, error) in
         if let error = error {
             print("Error fetching water fountains:", error.localizedDescription)
+            completion(nil) // Return with error indication
             return
         }
-        
-        listOfFountains = querySnapshot?.documents
+        let fountains = querySnapshot?.documents ?? []
+        completion(fountains) // Return with fetched data
+        print("Updated fountains:", fountains)
     }
-    
-    
-    return listOfFountains ?? []
 }

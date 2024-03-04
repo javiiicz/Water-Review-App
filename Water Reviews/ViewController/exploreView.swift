@@ -13,6 +13,8 @@ struct exploreView: View {
     // To go back
     @State private var goBack:Bool = false
     
+    @State private var fountains: [QueryDocumentSnapshot] = []
+    
     var body: some View {
         
         if goBack{
@@ -67,20 +69,21 @@ struct exploreView: View {
                     // Scrollable view
                     ScrollView{
                         VStack{
-                            let fountains = getFountains()
-                            
                             ForEach(fountains, id: \.self) { fountain in
                                 fountainUnit()
                             }
                         }
                         .frame(maxWidth: .infinity)
+                        .onAppear { // Call getFountains on view appearance
+                            getFountains { fountains in
+                                self.fountains = fountains ?? [] // Update state with fetched data
+                            }
+                        }
                     }
                     
                 }
-                
             }
         }
-        
     }
 }
 
