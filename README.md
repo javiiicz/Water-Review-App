@@ -1,6 +1,10 @@
 # Water Review App
 By: Javier Carrillo
 
+
+Demo Video: https://youtu.be/Wgc43QLooA8
+
+
 Water Reviews is an IOS app built with the Swift programming language. The app lets users create reviews with sliders, an image, and a description. This review is then posted in the explore page for everyone with the app to see. Apart from SwiftUI, the project uses Firebase libraries such as FirebaseAuth, FirebaseStorage, and FirebaseDatastore for the server side functionality.
 
 Upon opening the app, the mainView is called. In turn, this view calls the loginView. Effectiveley, the user is going to be brought to a screen with text fields for loging in. Additionally, one can switch to the registerView by pressing the button at the bottom of the screen. An account must be created in the registerView to use the app. I designed it this way because I envision the future of the app as a sort of social media.
