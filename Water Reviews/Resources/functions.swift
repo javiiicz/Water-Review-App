@@ -2,7 +2,7 @@
 //  functions.swift
 //  Water Reviews
 //
-//  Created by Javier Carrillo on 2/18/24.
+//  Creacted by Javier Carrillo on 2/18/24.
 //
 // The functions used throughout the project
 
