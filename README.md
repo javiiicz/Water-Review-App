@@ -1,6 +1,8 @@
 # Water Review App
 By: Javier Carrillo
 
+![App Image](https://github.com/javiiicz/Water-Review-App/blob/main/Water-Review-Img.png)
+
 
 Demo Video: https://youtu.be/Wgc43QLooA8
 
